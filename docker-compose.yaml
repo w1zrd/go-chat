@@ -1,0 +1,15 @@
+version: "3.5"
+services:
+  go:
+    container_name: goapp
+    build: app
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    links:
+     - db
+  db:
+    image: redis:alpine
+    ports:
+     - "6379:6379"
