@@ -2,6 +2,8 @@ version: "3.5"
 services:
   go:
     container_name: goapp
+    env_file:
+      - ./app/.env
     build: app
     ports:
       - "80:80"
