@@ -1,6 +1,7 @@
 FROM golang:alpine AS builder
 WORKDIR /go/src/app
-COPY ["main.go", "go.mod", "./"]
+COPY ["main.go", "go.mod", ".env", "./"]
+COPY ["public", "./public"]
 # RUN apk add upx
 RUN go get
 
@@ -16,6 +17,6 @@ WORKDIR /app
 COPY --from=builder ["/go/src/app", "./"]
 
 # Export necessary port
-EXPOSE 80
+EXPOSE 8080
 # Command to run when starting the container
 ENTRYPOINT ["./main"]
